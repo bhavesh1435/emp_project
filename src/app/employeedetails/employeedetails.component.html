@@ -1,0 +1,33 @@
+<div class="form-container" style="margin-top:2%"> 
+    <div class="header">
+      <h1>{{ isEditMode ? 'Edit Employee' : 'Add New Employee' }}</h1>
+      <p>Please fill out the details below to {{ isEditMode ? 'update' : 'add' }} an employee record.</p>
+    </div>
+  
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Enter employee name" formControlName="name" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <input matInput placeholder="Enter employee role" formControlName="role" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Start Date</mat-label>
+        <input matInput placeholder="Select start date" formControlName="startDate" type="date" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>End Date</mat-label>
+        <input matInput placeholder="Select end date" formControlName="endDate" type="date" />
+      </mat-form-field>
+  
+      <button type="submit" mat-raised-button color="primary">
+        {{ isEditMode ? 'Update Employee' : 'Add Employee' }}
+      </button>
+    </form>
+  </div>
+  

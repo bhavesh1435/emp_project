@@ -1,0 +1,55 @@
+<div fxLayout="column" fxLayoutAlign="start stretch" class="home-page">
+    <div class="header">
+      <h1>Employee List</h1>
+      <div class="header-underline"></div>
+    </div>
+  
+    <div *ngIf="currentEmployees.length === 0 && previousEmployees.length === 0" class="no-data-container">
+      <span class="material-icons no-data-icon">search_off</span>
+      <p>No employee data available</p>
+    </div>
+  
+    <div *ngIf="currentEmployees.length > 0" fxLayout="column" fxLayoutGap="24px" class="section current-emp">
+      <h2>Current Employees</h2>
+      <div class="employee-card-container">
+        <div class="employee-card" *ngFor="let employee of currentEmployees" (click)="onSelectEmployee(employee.id)">
+          <p><strong>Name:</strong> {{ employee.name }}</p>
+          <p><strong>Role:</strong> {{ employee.role }}</p>
+          <p><strong>Start Date:</strong> {{ employee.startDate | date }}</p>
+          <div *ngIf="selectedEmployeeId === employee.id" class="actions">
+            <button mat-button class="edit-btn" (click)="onEditEmployee(employee.id)">
+              <span class="material-icons">edit</span> Edit
+            </button>
+            <button mat-button class="delete-btn" color="warn" (click)="onDeleteEmployee(employee.id)">
+              <span class="material-icons">delete</span> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="previousEmployees.length > 0" fxLayout="column" fxLayoutGap="24px" class="section previous-emp">
+      <h2>Previous Employees</h2>
+      <div class="employee-card-container">
+        <div class="employee-card" *ngFor="let employee of previousEmployees" (click)="onSelectEmployee(employee.id)">
+          <p><strong>Name:</strong> {{ employee.name }}</p>
+          <p><strong>Role:</strong> {{ employee.role }}</p>
+          <p><strong>Start Date:</strong> {{ employee.startDate | date }}</p>
+          <p><strong>End Date:</strong> {{ employee.endDate | date }}</p>
+          <div *ngIf="selectedEmployeeId === employee.id" class="actions">
+            <button mat-button class="edit-btn" (click)="onEditEmployee(employee.id)">
+              <span class="material-icons">edit</span> Edit
+            </button>
+            <button mat-button class="delete-btn" color="warn" (click)="onDeleteEmployee(employee.id)">
+              <span class="material-icons">delete</span> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <button class="add-employee-btn" routerLink="/employee/add">
+      <span class="material-icons">add</span>
+    </button>
+  </div>
+  
